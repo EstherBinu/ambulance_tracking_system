@@ -1,0 +1,18 @@
+[
+    {
+    "_id": "62d729c9f1441234567890ah",
+    "message": "Ambulance 1 is nearby",
+    "ambulanceId": "62d729c9f1441234567890ab",
+    "patientId": "62d729c9f1441234567890ad",
+    "locationId": "62d729c9f1441234567890af",
+    "timestamp": "2023-02-20T14:30:00.000Z"
+    },
+    {
+    "_id": "62d729c9f1441234567890ai",
+    "message": "Patient 1 needs attention",
+    "ambulanceId": "62d729c9f1441234567890ab",
+    "patientId": "62d729c9f1441234567890ad",
+    "locationId": "62d729c9f1441234567890af",
+    "timestamp": "2023-02-20T14:35:00.000Z"
+    }
+    ]

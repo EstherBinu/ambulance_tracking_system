@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Ambulance Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.socket.io/4.5.3/socket.io.min.js"></script> <!-- Added Socket.IO -->
+    <style>
+        .badge {
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .badge-primary {
+            background-color: #3498db;
+        }
+        
+        .badge-success {
+            background-color: #2ecc71;
+        }
+        
+        .badge-danger {
+            background-color: #e74c3c;
+        }
+
+        /* Styling for ambulance list */
+        #ambulance-list {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #ambulance-list li {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="logoorg.jpg" alt="logo" width="50" height="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a href="maps.html">View Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">
+                        <span class="badge badge-primary">Login</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="patient-info.html">
+                        <span class="badge badge-success">Patient Information</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="alerts-notifications.html">
+                        <span class="badge badge-danger">Alerts and Notifications</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Welcome to GPS Ambulance Tracker</h1>
+                <p>This website allows you to track the location of ambulances in real-time.</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8382737644876!2d153.00695627531488!3d-27.464844976322492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9150abedfe920b%3A0xf02a35bd721b500!2sSuncorp%20Stadium!5e0!3m2!1sen!2sin!4v1737832182904!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen></iframe>
+                
+                <!-- Adding ambulance list -->
+                <h3>Ambulances Available:</h3>
+                <ul id="ambulance-list">
+                    <!-- Ambulance data will be populated here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Copyright 2023 GPS Ambulance Tracker.</span>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        // Establish a connection with the backend using Socket.IO
+        const socket = io('http://localhost:3000');
+
+        // Listen for real-time ambulance updates
+        socket.on('ambulanceUpdates', (ambulances) => {
+            console.log('Received updates:', ambulances); // Debugging
+
+            const ambulanceList = document.getElementById('ambulance-list');
+            ambulanceList.innerHTML = ''; // Clear the existing list
+
+            // Populate the list with new data
+            ambulances.forEach(ambulance => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${ambulance.name} - Location: ${ambulance.lat.toFixed(4)}, ${ambulance.lng.toFixed(4)} - Status: ${ambulance.status}`;
+                ambulanceList.appendChild(listItem);
+            });
+        });
+
+        // Handle errors or connection issues
+        socket.on('connect_error', (err) => {
+            console.error('Connection error:', err);
+            const ambulanceList = document.getElementById('ambulance-list');
+            ambulanceList.innerHTML = 'Failed to connect to the server. Please try again later.';
+        });
+    </script>
+</body>
+</html>

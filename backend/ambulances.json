@@ -1,0 +1,24 @@
+[
+    {
+      "_id": "62d729c9f1441234567890ab",
+      "name": "Ambulance 1",
+      "latitude": -27.464844976322492,
+      "longitude": 153.00695627531488,
+      "location": {
+        "type": "Point",
+        "coordinates": [-27.464844976322492, 153.00695627531488]
+      },
+      "status": "available"
+    },
+    {
+      "_id": "62d729c9f1441234567890ac",
+      "name": "Ambulance 2",
+      "latitude": -27.465844976322492,
+      "longitude": 153.00795627531488,
+      "location": {
+        "type": "Point",
+        "coordinates": [-27.465844976322492, 153.00795627531488]
+      },
+      "status": "enroute"
+    }
+  ]

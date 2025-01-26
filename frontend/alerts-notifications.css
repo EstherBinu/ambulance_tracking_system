@@ -1,0 +1,26 @@
+.alerts-notifications-container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .alerts-notifications-list {
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .alerts-notifications-list li {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .alerts-notifications-list li:last-child {
+    border-bottom: none;
+  }
+  

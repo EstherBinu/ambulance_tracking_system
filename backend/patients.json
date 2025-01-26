@@ -1,0 +1,22 @@
+[
+    {
+    "_id": "62d729c9f1441234567890ad",
+    "name": "John Doe",
+    "age": 30,
+    "location": {
+    "type": "Point",
+    "coordinates": [-27.464844976322492, 153.00695627531488]
+    },
+    "medicalCondition": "Heart Attack"
+    },
+    {
+    "_id": "62d729c9f1441234567890ae",
+    "name": "Jane Doe",
+    "age": 25,
+    "location": {
+    "type": "Point",
+    "coordinates": [-27.465844976322492, 153.00795627531488]
+    },
+    "medicalCondition": "Stroke"
+    }
+    ]
